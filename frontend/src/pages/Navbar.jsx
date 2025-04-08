@@ -8,15 +8,20 @@ export default function Navbar() {
   return (
     <nav className="bg-white shadow-md py-4 px-6 flex justify-between items-center">
       <Link to="/" className="text-xl font-bold text-blue-700">
-        ATS Tracker
+        Resumetrics
       </Link>
 
       <div className="space-x-4">
         {user ? (
           <>
+                      <Link to="/aboutus" className="text-gray-700 hover:text-blue-600 font-medium">
+              About us
+            </Link>
+
             <Link to="/dashboard" className="text-gray-700 hover:text-blue-600 font-medium">
               Dashboard
             </Link>
+
             <button
               onClick={logout}
               className="bg-red-500 hover:bg-red-600 text-white px-4 py-2 rounded transition"

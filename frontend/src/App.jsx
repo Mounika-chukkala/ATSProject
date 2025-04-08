@@ -6,8 +6,10 @@ import Register from "./pages/Register";
 import Dashboard from "./pages/Dashboard";
 import Navbar from "./pages/Navbar";
 import { Navigate } from "react-router-dom";
+import About from "./pages/About"
 export default function App() {
-  const { user } = useAuth();  return (
+  const { user } = useAuth();  
+  return (
     <div>
     <Navbar/>
       <Routes>
@@ -17,6 +19,11 @@ export default function App() {
   path="/dashboard"
   element={user ? <Dashboard /> : <Navigate to="/login" />}
 />
+<Route
+  path="/aboutus"
+  element={<About/>}
+/>
+
 
         {/* Redirect unknown routes to login */}
         <Route path="*" element={<Login />} />

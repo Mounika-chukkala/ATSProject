@@ -24,7 +24,7 @@ export default function Login() {
         setError("Invalid credentials");
       }
     } catch (err) {
-      setError("Something went wrong");
+      setError("No such user exists.Create new account");
       console.error("Login error:", err);
     }
   };
