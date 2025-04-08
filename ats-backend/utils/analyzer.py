@@ -1,53 +1,66 @@
 # ats-backend/utils/analyzer.py
 
-import os
-from dotenv import load_dotenv
+from google.generativeai import GenerativeModel
 import google.generativeai as genai
+from dotenv import load_dotenv  # 👈 Required to load .env
+import os
 
-# Load API key from .env
-load_dotenv()
-api_key = os.getenv("GEMINI_API_KEY")
+load_dotenv()  # 👈 This loads the .env file
 
-if not api_key:
-    raise ValueError("No GEMINI_API_KEY found in .env")
+# Now get the key
+key = os.getenv("GEMINI_API_KEY")
+genai.configure(api_key=key)  # 🔑 Replace this
+model = GenerativeModel("gemini-1.5-flash")
 
-# Configure Gemini
-genai.configure(api_key=api_key)
 
-# Use proper model name
-model = genai.GenerativeModel(model_name="models/gemini-1.5-pro-latest")
-
-def evaluate_resume(resume_text, job_description):
+def evaluate_resume(resume_text):
     prompt = f"""
-    Evaluate the following resume for the given job description.
-    Give a short summary and suggest improvements.
+You are a resume analysis assistant. Summarize the following resume, highlighting the candidate's:
+- Skills
+- Education
+- Experience
+- Projects (if any)
+Return the summary in clear bullet points.
 
-    Resume:
-    {resume_text}
-
-    Job Description:
-    {job_description}
-    """
+Resume:
+{resume_text}
+"""
 
     try:
         response = model.generate_content(prompt)
-        return response.text
+        return {
+            "summary": response.text,
+            "source": "Gemini AI"
+        }
+
     except Exception as e:
-        return f"❌ Error: {str(e)}"
+        print("🔥 Error in evaluate_resume:", e)
+        return {"error": str(e)}
+
 
 def match_resume(resume_text, job_description):
     prompt = f"""
-    Based on this resume and job description, give a match percentage and a short explanation.
+Compare the following resume with the job description and provide:
+1. Match Percentage
+2. Strengths
+3. Suggestions for Improvement
 
-    Resume:
-    {resume_text}
+Return in a good visually appealing format.
 
-    Job Description:
-    {job_description}
-    """
+Resume:
+{resume_text}
+
+Job Description:
+{job_description}
+"""
 
     try:
         response = model.generate_content(prompt)
-        return response.text
+        return {
+            "match_report": response.text,
+            "source": "Gemini AI"
+        }
+
     except Exception as e:
-        return f"❌ Error: {str(e)}"
+        print("🔥 Error in match_resume:", e)
+        return {"error": str(e)}

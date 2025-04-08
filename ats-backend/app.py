@@ -76,7 +76,7 @@ def evaluate():
         return jsonify({"error": "Missing file or job description"}), 400
 
     text = extract_text_from_pdf(resume)
-    analysis = evaluate_resume(text, job_desc)
+    analysis = evaluate_resume(text)
 
     return jsonify({"response": analysis})
 
@@ -94,4 +94,7 @@ def match():
     return jsonify({"response": result})
 
 if __name__ == "__main__":
+    print("\n📍 Registered routes:")
+    for rule in app.url_map.iter_rules():
+        print(rule)
     app.run(host="0.0.0.0", port=8000, debug=True)
