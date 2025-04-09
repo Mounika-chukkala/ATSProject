@@ -64,3 +64,32 @@ Job Description:
     except Exception as e:
         print("🔥 Error in match_resume:", e)
         return {"error": str(e)}
+
+
+
+def missing_words(resume_text, job_description):
+    prompt = f"""
+Compare the following resume with the job description and provide:
+1.The main keywords that are missing in resume .
+
+Return in a good visually appealing format.
+
+Resume:
+{resume_text}
+
+Job Description:
+{job_description}
+"""
+
+    try:
+        response = model.generate_content(prompt)
+        return {
+            "match_report": response.text,
+            "source": "Gemini AI"
+        }
+
+    except Exception as e:
+        print("🔥 Error in match_resume:", e)
+        return {"error": str(e)}
+
+

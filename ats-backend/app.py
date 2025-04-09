@@ -8,8 +8,7 @@ import os
 from dotenv import load_dotenv
 
 from utils.parser import extract_text_from_pdf
-from utils.analyzer import evaluate_resume, match_resume
-
+from utils.analyzer import evaluate_resume, match_resume,missing_words
 # Load .env variables
 load_dotenv()
 
@@ -67,7 +66,7 @@ def login():
 @app.route("/evaluate", methods=["POST"])
 def evaluate():
     print("✅ /evaluate route hit")
-    print("Received data:", request.form)
+    # print("Received data:", request.form)
 
     resume = request.files.get("resume")
     job_desc = request.form.get("job_description")
@@ -79,6 +78,23 @@ def evaluate():
     analysis = evaluate_resume(text)
 
     return jsonify({"response": analysis})
+
+@app.route("/missing_words", methods=["POST"])
+def missingWords():
+    print("✅ /missing_words route hit")
+    # print("Received data:", request.form)
+
+    resume = request.files.get("resume")
+    job_desc = request.form.get("job_description")
+
+    if not resume or not job_desc:
+        return jsonify({"error": "Missing file or job description"}), 400
+
+    text = extract_text_from_pdf(resume)
+    analysis = missing_words(text,job_desc)
+
+    return jsonify({"response": analysis})
+
 
 @app.route("/match_percentage", methods=["POST"])
 def match():

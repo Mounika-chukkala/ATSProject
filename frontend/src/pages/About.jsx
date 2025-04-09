@@ -5,9 +5,10 @@ function About() {
 <div className="min-h-screen bg-gradient-to-b from-blue-100 via-white to-blue-50 flex flex-col items-center justify-start px-4 py-10 text-gray-800">
       <h1 className="text-4xl font-bold text-blue-800 mb-4">About Resumetrics</h1>
       <p className="text-lg max-w-3xl text-center mb-8 leading-relaxed">
-        <span className="font-semibold text-blue-700">Resumetrics</span> is an intelligent Applicant Tracking System (ATS) designed to streamline your recruitment process.
-        With powerful resume parsing, skill matching, and automated scoring, it helps recruiters identify top candidates faster.
-      </p>
+        <span className="font-semibold text-blue-700">Resumetrics</span> is a smart and user-friendly Applicant Tracking System (ATS) crafted specifically for <span className="text-blue-600 font-medium">job seekers</span>. 
+          Our mission is to help you <span className="font-medium">reduce your rejection rates</span> by offering you deep insights into how well your resume matches with your dream job.
+        </p>
+
 
       <div className="grid md:grid-cols-2 gap-10 max-w-6xl w-full px-4">
         <div className="bg-white p-6 rounded-lg shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1">

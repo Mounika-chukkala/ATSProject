@@ -6,17 +6,23 @@ export default function Navbar() {
   const { user, logout } = useAuth();
 
   return (
-    <nav className="bg-white shadow-md py-4 px-6 flex justify-between items-center">
-      <Link to="/" className="text-xl font-bold text-blue-700">
-        Resumetrics
-      </Link>
+   <nav className="bg-[#e2ecf8]  backdrop-blur-md shadow-md  py-4 px-6 flex justify-between items-center">
+   
+   {/* <div className='flex'> */}
+      <Link to="/" >
+<span className="text-xl font-bold text-blue-700">Resumetrics</span>
+</Link>
+{/* <sub className='text-xs text-black/90'>  Precision meets potential</sub>
+   </div>
+   */}
 
       <div className="space-x-4">
-        {user ? (
-          <>
-                      <Link to="/aboutus" className="text-gray-700 hover:text-blue-600 font-medium">
+      <Link to="/aboutus" className="text-gray-700 hover:text-blue-600 font-medium">
               About us
             </Link>
+        {user ? (
+          <>
+                   
 
             <Link to="/dashboard" className="text-gray-700 hover:text-blue-600 font-medium">
               Dashboard

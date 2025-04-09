@@ -71,6 +71,12 @@ export default function Dashboard() {
           >
             📊 Check Match %
           </button>
+          <button
+            onClick={() => handleSubmit("missing_words")}
+            className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium shadow-sm transition-all duration-200"
+          >
+            📊 Get Missing Words
+          </button>
         </div>
 
         {isLoading ? (

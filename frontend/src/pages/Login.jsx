@@ -30,7 +30,7 @@ export default function Login() {
   };
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex bg-gradient-to-b from-blue-100 via-white to-blue-50 flex-col items-center justify-center min-h-screen bg-gray-100">
       <div className="bg-white p-6 rounded-xl shadow-md w-80">
         <h2 className="text-2xl font-bold mb-4 text-center">Login</h2>
         {error && <p className="text-red-500 text-sm mb-2">{error}</p>}
